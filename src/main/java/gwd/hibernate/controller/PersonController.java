@@ -29,7 +29,7 @@ public class PersonController {
 
 
     //obsuga formularza
-    @PostMapping("/add")
+    @PostMapping("/")
     public String create(@Valid Person person, BindingResult bindingResult)
     //bindign to sprawddza błedy, wyświetla błędy, automagia @Valid,
     // //dostaje parametry i chcesz robić setage setname itp i ma automatycznie błędy
@@ -37,12 +37,12 @@ public class PersonController {
     //Valid jest najlepszą odnotacja, bez nie niego musielibyśmy dać inną adnotacje np request parm czy coś z mapp
     {
         if (bindingResult.hasErrors()) {
-            return "form";
+            return "/form";
 
         } else {
            // update uzytkownika możliwy bo dodalismy ten same
             personRepository.save(person); //za[isanie od bazy danych gdy ok
-            return "redirect:/form";
+            return "redirect:/";
         }
     }
 
